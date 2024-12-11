@@ -1,13 +1,13 @@
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { removeFavAction } from '../redux/actions'
 
 function FavList() {
   const dispatch = useDispatch()
   const favArray = useSelector((reduxState) => {
-    return reduxState.fav.favourites
+    return reduxState.favourites.favourites
   })
-
   return (
     <Container>
       <Row>
@@ -19,10 +19,7 @@ function FavList() {
                 className="ms-4"
                 variant="danger"
                 onClick={() => {
-                  dispatch({
-                    type: 'REMOVE_FAV',
-                    payload: i,
-                  })
+                  dispatch(removeFavAction(i))
                 }}
               >
                 Delete
